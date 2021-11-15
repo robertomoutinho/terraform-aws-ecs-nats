@@ -1,7 +1,9 @@
 # AWS Terraform module which runs NATS Server on AWS Fargate
 
 This repository contains Terraform infrastructure code which creates NATS Server on ECS Fargate.
-For more information regarding NATS, visit: 
+For more information regarding NATS, visit: https://nats.io/
+
+[![Checkov](https://github.com/robertomoutinho/terraform-aws-ecs-nats/actions/workflows/checkov.yml/badge.svg)](https://github.com/robertomoutinho/terraform-aws-ecs-nats/actions/workflows/checkov.yml)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
