@@ -13,7 +13,7 @@ output "ecs_security_group" {
   value       = module.app_sg.this_security_group_id
 }
 
-output "service_discovery_name"{
+output "service_discovery_name" {
   description = "The Service Discovery DNS name"
   value       = try(aws_service_discovery_service.sds.0.name, null)
 }

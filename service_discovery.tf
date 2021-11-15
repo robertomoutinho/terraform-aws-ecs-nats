@@ -1,11 +1,11 @@
 resource "aws_service_discovery_service" "sds" {
 
-  for_each = { 
-    for st in toset(var.nats_cluster_nodes) : 
-      st => st if var.enable_service_discovery 
+  for_each = {
+    for st in toset(var.nats_cluster_nodes) :
+    st => st if var.enable_service_discovery
   }
 
-  name  = each.key
+  name = each.key
 
   dns_config {
     namespace_id = var.service_discovery_namespace_id

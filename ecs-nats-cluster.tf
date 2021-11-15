@@ -1,10 +1,10 @@
 locals {
-  container_name  = var.name
+  container_name             = var.name
   container_efs_mount_folder = "/opt/data/nats"
-  routes = join(",",local.leaf_nodes)
+  routes                     = join(",", local.leaf_nodes)
   leaf_nodes = [
-    for idx in var.nats_cluster_nodes : 
-      format("nats://%s.%s:${var.nats_cluster_port}", idx, var.service_discovery_namespace)
+    for idx in var.nats_cluster_nodes :
+    format("nats://%s.%s:${var.nats_cluster_port}", idx, var.service_discovery_namespace)
   ]
 }
 
@@ -46,7 +46,7 @@ module "container_definition_nats_cluster" {
   container_name  = var.name
   container_image = var.docker_image
   entrypoint      = ["nats-server"]
-  command         = [
+  command = [
     "--name",
     each.key,
     "--cluster",
@@ -66,19 +66,19 @@ module "container_definition_nats_cluster" {
 
   port_mappings = [
     {
-        containerPort = 4222
-        hostPort      = 4222
-        protocol      = "tcp"
+      containerPort = 4222
+      hostPort      = 4222
+      protocol      = "tcp"
     },
     {
-        containerPort = 8222
-        hostPort      = 8222
-        protocol      = "tcp"
+      containerPort = 8222
+      hostPort      = 8222
+      protocol      = "tcp"
     },
     {
-        containerPort = var.nats_cluster_port
-        hostPort      = var.nats_cluster_port
-        protocol      = "tcp"
+      containerPort = var.nats_cluster_port
+      hostPort      = var.nats_cluster_port
+      protocol      = "tcp"
     },
   ]
 
@@ -102,7 +102,7 @@ module "container_definition_nats_cluster" {
 
   environment = concat(
     var.custom_environment_variables,
-    [ 
+    [
       {
         "name" : "ECS_ENABLE_CONTAINER_METADATA",
         "value" : true
@@ -114,7 +114,7 @@ module "container_definition_nats_cluster" {
     ]
   )
 
-  secrets     = var.custom_environment_secrets
+  secrets = var.custom_environment_secrets
 
 }
 
@@ -132,12 +132,8 @@ resource "aws_ecs_task_definition" "nats_cluster" {
   volume {
     name = "nats-storage"
     efs_volume_configuration {
-      file_system_id  = aws_efs_file_system.this.id
+      file_system_id     = aws_efs_file_system.this.id
+      transit_encryption = "ENABLED"
     }
-  }
-  lifecycle {
-    ignore_changes = [
-      volume
-    ]
   }
 }

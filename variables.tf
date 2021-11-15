@@ -102,7 +102,7 @@ variable "nats_cluster_name" {
 variable "nats_cluster_nodes" {
   description = "The NATS cluster name"
   type        = list(string)
-  default     = [ "n1", "n2", "n3" ]
+  default     = ["n1", "n2", "n3"]
 }
 
 variable "nats_cluster_port" {
