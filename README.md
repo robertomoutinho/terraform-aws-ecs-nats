@@ -86,6 +86,7 @@ For more information regarding NATS, visit: https://nats.io/
 | Name | Description |
 |------|-------------|
 | <a name="output_ecs_security_group"></a> [ecs\_security\_group](#output\_ecs\_security\_group) | Security group assigned to ECS Service in network configuration |
+| <a name="output_nats_routes"></a> [nats\_routes](#output\_nats\_routes) | The Nats servers routes connection string |
 | <a name="output_service_discovery_name"></a> [service\_discovery\_name](#output\_service\_discovery\_name) | The Service Discovery DNS name |
 | <a name="output_task_role_arn"></a> [task\_role\_arn](#output\_task\_role\_arn) | The app ECS task role arn |
 | <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | ID of the VPC that was created or passed in |

@@ -17,3 +17,8 @@ output "service_discovery_name" {
   description = "The Service Discovery DNS name"
   value       = try(aws_service_discovery_service.sds.0.name, null)
 }
+
+output "nats_routes" {
+  description = "The Nats servers routes connection string"
+  value       = local.routes
+}
